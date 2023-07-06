@@ -37,7 +37,7 @@ public class MovementController : MonoBehaviour
         float targetSpeed = speed * speedMultiplier*relativeTransform.x;
         rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
 
-        isWallTouch = Physics2D.OverlapBox(wallCheckPoint.position, new Vector2(00.6f, 0.8f), 0, wallLayer);
+        isWallTouch = Physics2D.OverlapBox(wallCheckPoint.position, new Vector2(00.6f, 0.6f), 0, wallLayer);
 
         if (isWallTouch) Flip();
     }
