@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +19,9 @@ public class MovementController : MonoBehaviour
 
     Vector2 relativeTransform;
 
+    public bool isOnPlatform;
+    public Rigidbody2D platformRb;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,9 +36,17 @@ public class MovementController : MonoBehaviour
     {
         UpdateSpeedMultiplier();
         float targetSpeed = speed * speedMultiplier*relativeTransform.x;
-        rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
 
-        isWallTouch = Physics2D.OverlapBox(wallCheckPoint.position, new Vector2(00.6f, 0.6f), 0, wallLayer);
+        if (isOnPlatform)
+        {
+            rb.velocity = new Vector2(targetSpeed+platformRb.velocity.x, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
+        }
+
+        isWallTouch = Physics2D.OverlapBox(wallCheckPoint.position, new Vector2(00.5f, 0.5f), 0, wallLayer);
 
         if (isWallTouch) Flip();
     }
