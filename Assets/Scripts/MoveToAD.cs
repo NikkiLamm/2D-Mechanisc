@@ -8,7 +8,7 @@ public class MoveToAD : MonoBehaviour
     private ControllerToAD input = null;
     private Vector2 moveVector = Vector2.zero;
     private Rigidbody2D rb = null;
-    [SerializeField] private float moveSpeed = 10.0f;
+    [SerializeField] private float moveSpeed = 5.0f;
 
     private void Awake()
     {
